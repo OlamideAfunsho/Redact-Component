@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Redactr</title>
+     <link rel="stylesheet" type="text/css" href="style.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+     <div class="container">
+          <h2 class="heading">REDACT</h2>
+          <p class="heading-p">...scramble some words from a body of text content.</p>
+          <form action="#">
+               <label for="content" class="lbl">Enter your content:</label>
+               <input type="text" id="content" name="content" placeholder="" >
+               <label for="redact-content" class="lbl">Words to be redacted(seperated by spaces):</label>
+               <input type="text" id="redact-content" name="redact-content" placeholder="" >
+               <label for="dropdown">Choosing a replacement:</label><br>
+        <select id="redaction-char" name="redaction-char" >
+          <option value=""></option>
+          <option value="*">Asterisks</option>
+          <option value="?">Question Marks</option>
+          <option value="-">Dashes</option>
+        </select><br>
+        <button type="button" class="btn btn-redact" onclick="functionRedact()">Redact</button>
+        <button type="button" class="btn btn-reset" onclick="resetFunction()">Reset</button>
+          </form>
+          <h2 class="heading-redacted">Redacted Content</h2>
+          <span id="redacted-content"></span>
+     </div>
+
+     <script src="script.js" defer>
+
+     </script>
+</body>
+</html>
