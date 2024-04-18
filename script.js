@@ -30,7 +30,7 @@ function redact(content, redactContent, redactionChar){
   // Create a regular expression with all redacted words joined by "|" for alternation
             let regex = new RegExp("\\b(" + redactContent.join("|") + ")\\b", "gi");
             // Replace all occurrences of the redacted words with the chosen redaction character
-            let redactedOutput = content, function(match) {
+            let redactedOutput = content.replace(regex, function(match) {
                 return redactionChar.repeat(match.length);
             });
             
