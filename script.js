@@ -1,7 +1,7 @@
 function functionRedact(){
   
      let content = document.getElementById('content').value;
-     let redactContent = document.getElementById('redact-content').value;
+     let redactContent = document.getElementById('redact-content').value.split(",").map(word => word.trim());
      let redactionChar = document.getElementById('redaction-char').value;
      let redactedContent = document.getElementById('redacted-content');
 
@@ -27,30 +27,17 @@ function functionRedact(){
 }
 
 function redact(content, redactContent, redactionChar){
-  let words = content.split(" ");
+  // Create a regular expression with all redacted words joined by "|" for alternation
+            let regex = new RegExp("\\b(" + redactContent.join("|") + ")\\b", "gi");
+            // Replace all occurrences of the redacted words with the chosen redaction character
+            let redactedOutput = content, function(match) {
+                return redactionChar.repeat(match.length);
+            });
+            
+            return redactedOutput;
   
-  // Iterate through each word
-  for(let i = 0; i < words.length; i++){
-     // Checks if the word matches the specified word to redact
-     if(compareIgnoreCase(words[i], redactContent)){
-          // Replaces the word with the chosen redaction character
-          words[i] = redactionChar.repeat(words[i].length);
-     }
-  }
-  return words.join(" ")
 }
 
-function compareIgnoreCase(firstWord, secondWord){
-     if(firstWord.length !== secondWord.length){
-          return false;
-     }
-     for(let i = 0; i < firstWord.length; i++){
-          if(firstWord[i].toUpperCase() !== secondWord[i].toUpperCase()){
-               return false;
-          }
-     }
-     return true;
-}
 
 function resetFunction(){
      document.getElementById('content').value = "";
@@ -58,5 +45,3 @@ function resetFunction(){
      document.getElementById('redaction-char').value = "";
      document.getElementById('redacted-content').innerHTML = "";
 }
-
-
